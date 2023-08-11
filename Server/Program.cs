@@ -1,3 +1,4 @@
+using Azure.Storage.Blobs;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Server.Data;
@@ -18,6 +19,10 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(connectionString);
 });
+
+var storageConnectionString = builder.Configuration.GetConnectionString("StorageAccount");
+
+builder.Services.AddSingleton(u => new BlobServiceClient(storageConnectionString));
 
 //adding identity
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
