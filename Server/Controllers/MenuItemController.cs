@@ -27,5 +27,28 @@ namespace Server.Controllers
 
             return Ok(_response);
         }
+
+        [HttpGet("{id:int}")]
+        public async Task<IActionResult> GetMenuitems(int id)
+        {
+            if (id == 0)
+            {
+                _response.StatusCode = System.Net.HttpStatusCode.BadRequest;
+                return BadRequest(_response);
+            }
+
+            var menuItem = _db.MenuItems.FindAsync(id);
+
+            if (menuItem == null)
+            {
+                _response.StatusCode = System.Net.HttpStatusCode.NotFound;
+                return NotFound(_response);
+            }
+
+            _response.Result = menuItem;
+            _response.StatusCode = System.Net.HttpStatusCode.OK;
+            return Ok(_response);
+
+        }
     }
 }
