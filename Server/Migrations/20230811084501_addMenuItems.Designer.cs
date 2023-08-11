@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Server.Data;
 
@@ -11,9 +12,10 @@ using Server.Data;
 namespace Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230811084501_addMenuItems")]
+    partial class addMenuItems
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -254,68 +256,6 @@ namespace Server.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("MenuItems");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Category = "Friendly Package",
-                            Description = "4 Jumbo Burgers along with 3 Mini Burgers and 7 Wings with White Sauce!",
-                            Image = "https://winghutimages.blob.core.windows.net/winghut/friendsPackage.jpg",
-                            Name = "Package 1 (Friendly)",
-                            Price = 47.990000000000002,
-                            SpecialTag = "Gathering"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Category = "One Meal",
-                            Description = "Roasted Wings with Garlic Sauce and sprinkled onion leaves",
-                            Image = "https://winghutimages.blob.core.windows.net/winghut/normalWings.jpg",
-                            Name = "Roasted Wings",
-                            Price = 8.9900000000000002,
-                            SpecialTag = "Top Rated"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Category = "Party Package",
-                            Description = "1 Large Pizza, 10 Cans of soft drinks, 40 Wings, Unlimited Suace, 1 Bowl of Chips, 1 Bowl of PopCorn",
-                            Image = "https://winghutimages.blob.core.windows.net/winghut/partyPackage.jpg",
-                            Name = "Package 1 (Party)",
-                            Price = 82.989999999999995,
-                            SpecialTag = "Best Seller"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Category = "Whole Meal",
-                            Description = "1 Whole Grilled Chicken with our Special White Sauce",
-                            Image = "https://winghutimages.blob.core.windows.net/winghut/wholeChicken.jpg",
-                            Name = "Whole Grilled Chicken",
-                            Price = 10.69,
-                            SpecialTag = ""
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Category = "Buckets",
-                            Description = "A Bucket (50 pieces) of Chicken Wings with Hot Sauce and White Sauce",
-                            Image = "https://winghutimages.blob.core.windows.net/winghut/wingOnBucket.jpg",
-                            Name = "Package 1 (Bucket)",
-                            Price = 12.99,
-                            SpecialTag = "Top Rated"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Category = "Trays",
-                            Description = "Tray of Wings specially marinated with lime and our secret sauce!",
-                            Image = "https://winghutimages.blob.core.windows.net/winghut/wingTray.jpg",
-                            Name = "Package 1 (Tray)",
-                            Price = 101.98999999999999,
-                            SpecialTag = "Top Rated"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
