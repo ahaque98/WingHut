@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Server.Data;
 using Server.Models;
+using Server.Service.Interfaces;
+using Server.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,9 +22,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString);
 });
 
-var storageConnectionString = builder.Configuration.GetConnectionString("StorageAccount");
-
-builder.Services.AddSingleton(u => new BlobServiceClient(storageConnectionString));
+builder.Services.AddSingleton(u => new BlobServiceClient(
+    builder.Configuration.GetConnectionString("StorageAccount")));
+builder.Services.AddSingleton<IBlobService, BlobService>();
 
 //adding identity
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()

@@ -5,18 +5,20 @@ using Server.Service.Interfaces;
 namespace Server.Service
 {
     public class BlobService : IBlobService
-    { 
+    {
         private readonly BlobServiceClient _blobClient;
+
         public BlobService(BlobServiceClient blobClient)
         {
             _blobClient = blobClient;
         }
-        public async Task<bool> DeleteBlob(string blobName, string containerNamer)
+        public async Task<bool> DeleteBlob(string blobName, string containerName)
         {
-            BlobContainerClient blobContainerClient = _blobClient.GetBlobContainerClient(containerNamer);
+            BlobContainerClient blobContainerClient = _blobClient.GetBlobContainerClient(containerName);
             BlobClient blobClient = blobContainerClient.GetBlobClient(blobName);
 
             return await blobClient.DeleteIfExistsAsync();
+
         }
 
         public async Task<string> GetBlob(string blobName, string containerName)
@@ -30,14 +32,11 @@ namespace Server.Service
         {
             BlobContainerClient blobContainerClient = _blobClient.GetBlobContainerClient(containerName);
             BlobClient blobClient = blobContainerClient.GetBlobClient(blobName);
-
             var httpHeaders = new BlobHttpHeaders()
             {
                 ContentType = file.ContentType
             };
-
             var result = await blobClient.UploadAsync(file.OpenReadStream(), httpHeaders);
-
             if (result != null)
             {
                 return await GetBlob(blobName, containerName);
