@@ -37,7 +37,7 @@ namespace Server.Controllers
                 return BadRequest(_response);
             }
 
-            var menuItem = _db.MenuItems.FindAsync(id);
+            var menuItem = await _db.MenuItems.FindAsync(id);
 
             if (menuItem == null)
             {
