@@ -181,12 +181,12 @@ namespace Server.Controllers
                 await _blobService.DeleteBlob(menuItemFromDb.Image.Split('/').Last(), SD.SD_STORAGE_CONTAINER);
                 int milliseconds = 2000;
                 Thread.Sleep(milliseconds);
-
+                
                 _db.MenuItems.Remove(menuItemFromDb);
                 _db.SaveChanges();
                 _response.StatusCode = HttpStatusCode.NoContent;
                 return Ok(_response);
-            }
+            } 
             catch (Exception ex)
             {
                 _response.isSuccess = false;
@@ -198,4 +198,3 @@ namespace Server.Controllers
         }
     }
 }
-
