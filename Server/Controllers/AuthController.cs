@@ -8,6 +8,7 @@ using Server.Models.DTO.LoginDTOs;
 using Server.Models.DTO.RegisterDTOs;
 using Server.Models.Response;
 using Server.Utility;
+using System.Data;
 using System.IdentityModel.Tokens.Jwt;
 using System.Net;
 using System.Security.Claims;
