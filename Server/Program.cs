@@ -6,7 +6,6 @@ using Server.Models;
 using Server.Service.Interfaces;
 using Server.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.OpenApi.Models;
